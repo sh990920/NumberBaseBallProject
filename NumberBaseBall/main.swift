@@ -9,9 +9,5 @@ import Foundation
 
 let game = Game()
 
-game.gameSetting()
-
-print(game.baseBall.firstNumber)
-print(game.baseBall.secodeNumber)
-print(game.baseBall.thirdNumber)
+game.playGame()
 

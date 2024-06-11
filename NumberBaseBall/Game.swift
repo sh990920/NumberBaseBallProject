@@ -10,6 +10,7 @@ import Foundation
 class Game {
     var baseBall: BaseBall
     var input:[Int] = []
+    var gameLog: [Int] = []
     
     init() {
         self.baseBall = BaseBall(firstNumber: 0, secondNumber: 0, thirdNumber: 0)
@@ -34,7 +35,51 @@ class Game {
         return number
     }
     
+    func startGame() {
+        var isPlay = true
+        print("환영합니다! 원하시는 번호를 입력해주세요")
+        
+        while isPlay {
+            print("1. 게임 시작하기  2. 게임 기록 보기  3. 종료하기")
+            let menuSelect = readLine()!
+            if let menuSelectNumber = Int(menuSelect) {
+                isPlay = selectMenu(menuSelectNumber)
+            } else {
+                print("올바른 숫자를 입력해주세요!")
+            }
+        }
+        
+    }
+    
+    func selectMenu(_ selectNumber: Int) -> Bool {
+        switch selectNumber {
+        case 1:
+            playGame()
+        case 2:
+            // 아직 기능 없음
+            showGameLog()
+        case 3:
+            print("< 숫자 야구 게임을 종료합니다 >")
+            return false
+        default:
+            break
+        }
+        return true
+    }
+    
+    func showGameLog() {
+        print("< 게임 기록 보기 >")
+        if gameLog.isEmpty {
+            print("게임 기록 결과가 없습니다.")
+        } else {
+            for (idx, log) in gameLog.enumerated() {
+                print("\(idx + 1)번째 게임 : 시도 횟수 - \(log)회")
+            }
+        }
+    }
+    
     func playGame() {
+        var gameCount = 0
         gameSetting()
         print("< 게임을 시작합니다 >")
         while(isCorrect()) {
@@ -48,6 +93,7 @@ class Game {
                 print("올바르지 않은 입력값입니다")
                 continue
             }
+            gameCount += 1
             print(input)
             // 계산 결과 받기
             let ballCount = baseBall.ballCount(self.input)
@@ -55,6 +101,7 @@ class Game {
             ballCountPrint(ballCount)
         }
         print("< 게임 종료 >")
+        gameLog.append(gameCount)
     }
     
     func ballCountPrint(_ ballCount: [Int]) {

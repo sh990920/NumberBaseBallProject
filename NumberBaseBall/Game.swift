@@ -41,11 +41,13 @@ class Game {
         
         while isPlay {
             print("1. 게임 시작하기  2. 게임 기록 보기  3. 종료하기")
+            print("메뉴를 선택해주세요 : ", terminator: "")
             let menuSelect = readLine()!
             if let menuSelectNumber = Int(menuSelect) {
                 isPlay = selectMenu(menuSelectNumber)
             } else {
                 print("올바른 숫자를 입력해주세요!")
+                print()
             }
         }
         
@@ -76,6 +78,7 @@ class Game {
                 print("\(idx + 1)번째 게임 : 시도 횟수 - \(log)회")
             }
         }
+        print()
     }
     
     func playGame() {
@@ -91,6 +94,7 @@ class Game {
             // 입력값이 이상하면 다시 입력
             if !inputNumber(input) {
                 print("올바르지 않은 입력값입니다")
+                print()
                 continue
             }
             gameCount += 1
@@ -101,6 +105,7 @@ class Game {
             ballCountPrint(ballCount)
         }
         print("< 게임 종료 >")
+        print()
         gameLog.append(gameCount)
     }
     
@@ -117,6 +122,8 @@ class Game {
             }
             if ballCount[0] != 0 {
                 print("\(ballCount[0]) 볼")
+            } else {
+                print()
             }
         }
         print()

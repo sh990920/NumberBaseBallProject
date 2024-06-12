@@ -7,6 +7,12 @@
 
 import Foundation
 
+enum gameMenu: Int {
+    case gameStart = 1
+    case gameResult
+    case gameEnd
+}
+
 class Game {
     var baseBall: BaseBall
     var input:[Int] = []
@@ -55,16 +61,16 @@ class Game {
     
     func selectMenu(_ selectNumber: Int) -> Bool {
         switch selectNumber {
-        case 1:
+        case gameMenu.gameStart.rawValue:
             playGame()
-        case 2:
-            // 아직 기능 없음
+        case gameMenu.gameResult.rawValue:
             showGameLog()
-        case 3:
+        case gameMenu.gameEnd.rawValue:
             print("< 숫자 야구 게임을 종료합니다 >")
             return false
         default:
-            break
+            print("올바른 숫자를 입력해주세요!")
+            print()
         }
         return true
     }

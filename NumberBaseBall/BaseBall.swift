@@ -31,16 +31,7 @@ class BaseBall {
     // 볼카운트 계산 메소드
     func ballCount(_ input: [Int]) -> [Int] {
         for (inputIdx, inputNum) in input.enumerated() {
-            for (sysIdx, sysNum) in systemNumberArray.enumerated() {
-                if inputNum == sysNum {
-                    if inputIdx == sysIdx {
-                        strike += 1
-                        break
-                    }
-                    ball += 1
-                    break
-                }
-            }
+            equalsMethod(inputIdx, inputNum)
         }
         
         return [ball, strike]
@@ -55,13 +46,12 @@ class BaseBall {
     // 반복문 depth를 줄이기 위한 함수
     func equalsMethod(_ inputIndex: Int, _ inputNumber: Int) {
         for (systemIndex, systemNumber) in systemNumberArray.enumerated() {
-            if isEqualsNumber(systemNumber, inputNumber) {
-                if isEqualsIndex(systemIndex, inputIndex) {
-                    strike += 1
-                    break
-                }
-                ball += 1
+            if isEqualsNumber(systemNumber, inputNumber) && isEqualsIndex(systemIndex, inputIndex) {
+                strike += 1;
                 break
+            } else if (isEqualsNumber(systemNumber, inputNumber)) {
+                ball += 1;
+                break;
             }
         }
     }

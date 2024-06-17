@@ -1,12 +1,6 @@
 
 import Foundation
 
-enum gameMenu: Int {
-    case gameStart = 1
-    case gameResult
-    case gameEnd
-}
-
 class Game {
     var baseBall: BaseBall
     var input:[Int] = []
@@ -55,11 +49,11 @@ class Game {
     
     func selectMenu(_ selectNumber: Int) -> Bool {
         switch selectNumber {
-        case gameMenu.gameStart.rawValue:
+        case GameMenu.gameStart.rawValue:
             playGame()
-        case gameMenu.gameResult.rawValue:
+        case GameMenu.gameResult.rawValue:
             showGameLog()
-        case gameMenu.gameEnd.rawValue:
+        case GameMenu.gameEnd.rawValue:
             print("< 숫자 야구 게임을 종료합니다 >")
             return false
         default:
@@ -86,12 +80,9 @@ class Game {
         gameSetting()
         print("< 게임을 시작합니다 >")
         while(isCorrect()) {
-            // 볼카운트 초기화
             baseBall.ballCountInit()
-            // 숫자 입력
             print("숫자를 입력하세요 : ", terminator: "")
             let input = readLine()!
-            // 입력값이 이상하면 다시 입력
             if !inputNumber(input) {
                 print("올바르지 않은 입력값입니다")
                 print()
@@ -99,9 +90,7 @@ class Game {
             }
             gameCount += 1
             print(input)
-            // 계산 결과 받기
             let ballCount = baseBall.ballCount(self.input)
-            // 출력
             ballCountPrint(ballCount)
         }
         print("< 게임 종료 >")
@@ -149,10 +138,7 @@ class Game {
     }
     
     func isNumber(_ str: String) -> Bool {
-        if str.count != 3 {
-            return false
-        }
-        if Int(str) != nil {
+        if Int(str) != nil && str.count == 3 {
             return true
         } else {
             return false

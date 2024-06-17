@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+enum GameMenu: Int {
+    case gameStart = 1
+    case gameResult
+    case gameEnd
+}

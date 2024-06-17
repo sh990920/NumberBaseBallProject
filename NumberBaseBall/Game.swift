@@ -1,9 +1,3 @@
-//
-//  Game.swift
-//  NumberBaseBall
-//
-//  Created by 박승환 on 6/11/24.
-//
 
 import Foundation
 
@@ -21,7 +15,7 @@ class Game {
     init() {
         self.baseBall = BaseBall(firstNumber: 0, secondNumber: 0, thirdNumber: 0)
     }
-    // Lv3 첫번 째 자리 숫자는 0이 될 수 없음
+    
     func gameSetting() {
         var firstNumber = createRandomNumber()
         var secondNumber = createRandomNumber()
@@ -35,7 +29,7 @@ class Game {
         
         baseBall = BaseBall(firstNumber: firstNumber, secondNumber: secondNumber, thirdNumber: thirdNumber)
     }
-    // Lv3 0 ~ 9 까지 숫자 중 아무거나 선택되도록 수정
+    
     private func createRandomNumber() -> Int {
         let number = Int.random(in: 0...9)
         return number
@@ -142,7 +136,6 @@ class Game {
         return true
     }
     
-    // 숫자 입력
     func inputNumber(_ input: String) -> Bool {
         var numList: [Int] = []
         if isNumber(input) {
@@ -155,7 +148,6 @@ class Game {
         return false
     }
     
-    // 숫자인지 확인하는 메소드
     func isNumber(_ str: String) -> Bool {
         if str.count != 3 {
             return false
@@ -167,7 +159,6 @@ class Game {
         }
     }
     
-    // 입력값이 같은지 확인하는 메소드
     func isEquals(_ arr:[Int]) -> Bool {
         let setArr = Set(arr)
         if setArr.count == arr.count {
